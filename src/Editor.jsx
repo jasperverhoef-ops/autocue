@@ -21,11 +21,12 @@ Replace this placeholder with your own script, or import a .txt or .docx file us
 
 When you are ready, press the Start Recording button in the top right. Good luck with your recording!`
 
-const SHORTCUTS = [
-  ['Space', 'Play / Pause'],
-  ['↑ / ↓', 'Speed +1 / −1'],
-  ['R', 'Reset to top'],
-  ['Esc', 'Exit teleprompter'],
+const MOBILE_TIPS = [
+  ['Tik', 'Play / Pause'],
+  ['Scroll omhoog/omlaag', 'Positie aanpassen tijdens pauze'],
+  ['Veeg omhoog (HUD)', 'Snelheid verhogen'],
+  ['Veeg omlaag (HUD)', 'Snelheid verlagen'],
+  ['Reset-knop', 'Terug naar begin'],
 ]
 
 export default function Editor({ text, setText, fontSize, setFontSize, speed, setSpeed, onStart }) {
@@ -187,29 +188,30 @@ export default function Editor({ text, setText, fontSize, setFontSize, speed, se
           </div>
 
           {/* Live text preview */}
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 overflow-hidden">
             <span className="text-xs text-gray-500 block mb-3 uppercase tracking-wider">Preview</span>
-            <p
-              className="text-white overflow-hidden"
-              style={{
-                fontSize: `${Math.min(fontSize, 28)}px`,
-                lineHeight: 1.8,
-                fontFamily: '"Georgia", "Times New Roman", serif',
-              }}
-            >
-              The quick brown fox jumps.
-            </p>
+            <div style={{ overflow: 'hidden', maxHeight: '4.5em' }}>
+              <p
+                className="text-white"
+                style={{
+                  fontSize: `${fontSize}px`,
+                  lineHeight: 1.8,
+                  fontFamily: '"Georgia", "Times New Roman", serif',
+                  margin: 0,
+                }}
+              >
+                Voorbeeld tekst.
+              </p>
+            </div>
           </div>
 
-          {/* Keyboard shortcuts */}
+          {/* Mobile tips */}
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
-            <span className="text-xs text-gray-500 block mb-3 uppercase tracking-wider">Keyboard Shortcuts</span>
+            <span className="text-xs text-gray-500 block mb-3 uppercase tracking-wider">Bediening</span>
             <div className="space-y-2.5">
-              {SHORTCUTS.map(([key, action]) => (
-                <div key={key} className="flex items-center justify-between gap-3">
-                  <kbd className="shrink-0 bg-gray-800 border border-gray-700 rounded-md px-2 py-0.5 text-xs text-gray-300 font-mono">
-                    {key}
-                  </kbd>
+              {MOBILE_TIPS.map(([gesture, action]) => (
+                <div key={gesture} className="flex items-start justify-between gap-3">
+                  <span className="shrink-0 text-xs text-gray-300 font-medium">{gesture}</span>
                   <span className="text-xs text-gray-500 text-right">{action}</span>
                 </div>
               ))}
