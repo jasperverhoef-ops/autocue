@@ -51,11 +51,15 @@ export function useScroller(containerRef) {
 
   const play = useCallback(() => {
     if (isPlayingRef.current) return
+    // Sync with actual scroll position so manual scrolling while paused is respected
+    if (containerRef.current) {
+      scrollYRef.current = containerRef.current.scrollTop
+    }
     isPlayingRef.current = true
     setIsPlaying(true)
     lastTimestampRef.current = null
     rafRef.current = requestAnimationFrame(tick)
-  }, [tick])
+  }, [tick, containerRef])
 
   const pause = useCallback(() => {
     isPlayingRef.current = false

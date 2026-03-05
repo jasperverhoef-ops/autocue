@@ -68,8 +68,8 @@ export default function Editor({ text, setText, fontSize, setFontSize, speed, se
               </svg>
             </div>
             <div className="min-w-0">
-              <h1 className="text-lg md:text-xl font-bold tracking-tight leading-none">Autocue</h1>
-              <p className="text-gray-500 text-xs mt-0.5 hidden sm:block">Professional Teleprompter</p>
+              <h1 className="text-lg md:text-xl font-bold tracking-tight leading-none">CU Leeuwarden</h1>
+              <p className="text-gray-500 text-xs mt-0.5 hidden sm:block">Autocue</p>
             </div>
           </div>
 
