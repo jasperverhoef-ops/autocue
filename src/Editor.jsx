@@ -56,38 +56,39 @@ export default function Editor({ text, setText, fontSize, setFontSize, speed, se
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
       {/* ── Header ─────────────────────────────────────────── */}
-      <header className="border-b border-gray-800/60 px-8 py-5">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
+      <header className="border-b border-gray-800/60 px-4 py-4 md:px-8 md:py-5">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             {/* Clapperboard-style icon */}
-            <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+            <div className="w-9 h-9 shrink-0 rounded-lg bg-white/10 flex items-center justify-center">
               <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="7" width="20" height="15" rx="2" />
                 <polyline points="17 2 12 7 7 2" />
                 <line x1="2" y1="7" x2="22" y2="7" />
               </svg>
             </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight leading-none">Autocue</h1>
-              <p className="text-gray-500 text-xs mt-0.5">Professional Teleprompter</p>
+            <div className="min-w-0">
+              <h1 className="text-lg md:text-xl font-bold tracking-tight leading-none">Autocue</h1>
+              <p className="text-gray-500 text-xs mt-0.5 hidden sm:block">Professional Teleprompter</p>
             </div>
           </div>
 
           <button
             onClick={onStart}
             disabled={!canStart}
-            className="flex items-center gap-2 px-6 py-2.5 bg-white text-gray-950 font-semibold rounded-xl hover:bg-gray-100 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-sm"
+            className="shrink-0 flex items-center gap-2 px-4 py-2.5 md:px-6 bg-white text-gray-950 font-semibold rounded-xl hover:bg-gray-100 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed transition-all text-sm"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="5,3 19,12 5,21" />
             </svg>
-            Start Recording
+            <span className="hidden sm:inline">Start Recording</span>
+            <span className="sm:hidden">Start</span>
           </button>
         </div>
       </header>
 
       {/* ── Main layout ────────────────────────────────────── */}
-      <main className="flex-1 max-w-6xl mx-auto w-full px-8 py-8 flex gap-8">
+      <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-5 md:px-8 md:py-8 flex flex-col md:flex-row gap-5 md:gap-8">
         {/* Left column: script textarea */}
         <div className="flex-1 flex flex-col gap-3 min-w-0">
           <div className="flex items-center justify-between">
@@ -127,7 +128,7 @@ export default function Editor({ text, setText, fontSize, setFontSize, speed, se
             onChange={(e) => setText(e.target.value)}
             placeholder="Paste or type your script here…"
             spellCheck
-            className="flex-1 min-h-[480px] bg-gray-900 border border-gray-800 rounded-xl p-5 text-gray-100 text-base leading-relaxed resize-none focus:outline-none focus:border-gray-600 placeholder-gray-700 font-mono transition-colors"
+            className="flex-1 min-h-[300px] md:min-h-[480px] bg-gray-900 border border-gray-800 rounded-xl p-5 text-gray-100 text-base leading-relaxed resize-none focus:outline-none focus:border-gray-600 placeholder-gray-700 font-mono transition-colors"
           />
 
           <p className="text-xs text-gray-600 text-right">
@@ -136,7 +137,7 @@ export default function Editor({ text, setText, fontSize, setFontSize, speed, se
         </div>
 
         {/* Right column: settings */}
-        <div className="w-72 flex flex-col gap-5 shrink-0">
+        <div className="w-full md:w-72 md:shrink-0 flex flex-col gap-5">
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Settings</h2>
 
           {/* Font size */}

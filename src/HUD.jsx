@@ -42,7 +42,7 @@ export default function HUD({ isPlaying, speed, onToggle, onReset, onSpeedChange
       `}
       onMouseMove={handleHudInteraction}
     >
-      <div className="flex items-center gap-5 bg-black/80 backdrop-blur-md border border-white/15 rounded-2xl px-7 py-4 shadow-2xl">
+      <div className="flex items-center gap-3 md:gap-5 bg-black/80 backdrop-blur-md border border-white/15 rounded-2xl px-4 py-3 md:px-7 md:py-4 shadow-2xl">
         {/* Reset */}
         <button
           onClick={onReset}
@@ -91,7 +91,7 @@ export default function HUD({ isPlaying, speed, onToggle, onReset, onSpeedChange
         <div className="w-px h-8 bg-white/10" />
 
         {/* Speed control */}
-        <div className="flex flex-col gap-2 min-w-[160px]">
+        <div className="flex flex-col gap-2 w-28 md:w-40">
           <div className="flex items-center justify-between">
             <span className="text-xs text-white/50 uppercase tracking-wider">Speed</span>
             <span className="text-sm font-semibold text-white tabular-nums">{speed}/10</span>
