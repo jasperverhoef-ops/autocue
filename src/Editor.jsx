@@ -1,11 +1,15 @@
 import { useRef } from 'react'
 import mammoth from 'mammoth'
 
-const SAMPLE_TEXT = `Welcome to Autocue — your professional teleprompter.
+const SAMPLE_TEXT = `# Welkom
+
+Welcome to Autocue — your professional teleprompter.
 
 Replace this placeholder with your own script, or import a .txt or .docx file using the buttons above.
 
-Tips for best results:
+# Tips
+
+• Start a line with # to mark it as a section header — it appears smaller and blue during playback.
 
 • Keep sentences short and direct so they are easy to read at a glance.
 

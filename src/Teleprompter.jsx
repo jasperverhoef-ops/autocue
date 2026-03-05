@@ -106,16 +106,37 @@ export default function Teleprompter({ text, fontSize, initialSpeed, onExit }) {
             color: '#f0f0f0',
           }}
         >
-          {lines.map((line, i) =>
-            line.trim() === '' ? (
-              // Blank line → visual paragraph gap
-              <div key={i} style={{ height: `${fontSize * 1.1}px` }} aria-hidden="true" />
-            ) : (
+          {lines.map((line, i) => {
+            if (line.trim() === '') {
+              return <div key={i} style={{ height: `${fontSize * 1.1}px` }} aria-hidden="true" />
+            }
+            if (line.startsWith('#')) {
+              const heading = line.replace(/^#+\s*/, '')
+              return (
+                <p
+                  key={i}
+                  style={{
+                    margin: 0,
+                    marginTop: `${fontSize * 0.8}px`,
+                    marginBottom: `${fontSize * 0.4}px`,
+                    fontSize: `${fontSize * 0.7}px`,
+                    fontFamily: 'system-ui, sans-serif',
+                    fontWeight: 700,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: '#5b9bd5',
+                  }}
+                >
+                  {heading}
+                </p>
+              )
+            }
+            return (
               <p key={i} style={{ margin: 0, marginBottom: `${fontSize * 0.35}px` }}>
                 {line}
               </p>
-            ),
-          )}
+            )
+          })}
         </div>
 
         {/* Allow the last line to scroll all the way through the reading zone */}
