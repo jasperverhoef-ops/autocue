@@ -16,11 +16,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       base,
       manifest: {
-        name: 'CU Leeuwarden Autocue',
-        short_name: 'CU Autocue',
+        name: 'Autocue',
+        short_name: 'Autocue',
         description: 'Teleprompter app voor ChristenUnie Leeuwarden',
-        theme_color: '#003DA5',
-        background_color: '#003DA5',
+        theme_color: '#111111',
+        background_color: '#111111',
         display: 'standalone',
         orientation: 'landscape',
         icons: [

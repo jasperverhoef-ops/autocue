@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
 const HIDE_DELAY_MS = 3000
+const SWIPE_THRESHOLD = 30 // px
 
 export default function HUD({ isPlaying, speed, onToggle, onReset, onSpeedChange }) {
   const [visible, setVisible] = useState(true)
   const timerRef = useRef(null)
+  const touchStartYRef = useRef(null)
 
   const scheduleHide = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current)
@@ -30,8 +32,22 @@ export default function HUD({ isPlaying, speed, onToggle, onReset, onSpeedChange
     }
   }, [show, scheduleHide])
 
-  // Keep visible while interacting with HUD itself
   const handleHudInteraction = () => show()
+
+  const handleTouchStart = (e) => {
+    touchStartYRef.current = e.touches[0].clientY
+  }
+
+  const handleTouchEnd = (e) => {
+    if (touchStartYRef.current === null) return
+    const delta = touchStartYRef.current - e.changedTouches[0].clientY
+    if (Math.abs(delta) >= SWIPE_THRESHOLD) {
+      // Swipe up = faster, swipe down = slower
+      onSpeedChange(Math.max(1, Math.min(10, speed + (delta > 0 ? 1 : -1))))
+    }
+    touchStartYRef.current = null
+    show()
+  }
 
   return (
     <div
@@ -41,6 +57,8 @@ export default function HUD({ isPlaying, speed, onToggle, onReset, onSpeedChange
         ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}
       `}
       onMouseMove={handleHudInteraction}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <div className="flex items-center gap-3 md:gap-5 bg-black/80 backdrop-blur-md border border-white/15 rounded-2xl px-4 py-3 md:px-7 md:py-4 shadow-2xl">
         {/* Reset */}
@@ -74,13 +92,11 @@ export default function HUD({ isPlaying, speed, onToggle, onReset, onSpeedChange
           className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-100 active:scale-95 transition-all shadow-lg"
         >
           {isPlaying ? (
-            /* Pause icon */
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
               <rect x="6" y="4" width="4" height="16" rx="1" />
               <rect x="14" y="4" width="4" height="16" rx="1" />
             </svg>
           ) : (
-            /* Play icon */
             <svg className="w-6 h-6 ml-1" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="5,3 19,12 5,21" />
             </svg>
