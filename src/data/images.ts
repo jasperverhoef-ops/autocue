@@ -1,0 +1,25 @@
+export const FOOD_IMAGES = {
+  nachos1: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=800&q=80',
+  nachos2: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?w=800&q=80',
+  nachos3: 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=800&q=80',
+  nachos4: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80',
+  nachos5: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
+  nachos6: 'https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=800&q=80',
+  restaurant1: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80',
+  restaurant2: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80',
+  restaurant3: 'https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=800&q=80',
+  restaurant4: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?w=800&q=80',
+  restaurant5: 'https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=800&q=80',
+  hero: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=1400&q=80',
+  guac: 'https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?w=600&q=80',
+  salsa: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80',
+  chips: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?w=600&q=80',
+  cheese: 'https://images.unsplash.com/photo-1618164436241-4473940d1f5c?w=600&q=80',
+  margarita: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80',
+  interior1: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80',
+  interior2: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&q=80',
+  tacos: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80',
+  platter: 'https://images.unsplash.com/photo-1541529086526-db283c563270?w=800&q=80',
+} as const;
+
+export type FoodImageKey = keyof typeof FOOD_IMAGES;
